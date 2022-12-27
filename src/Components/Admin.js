@@ -24,7 +24,8 @@ function Admin(){
 
     const [companieslist,setCompanieslist] = useState([])
     useEffect(() => {
-        axios.get(`https://aceplacementsback.onrender.com/updateentrylist`)
+        //axios.get(`https://aceplacementsback.onrender.com/updateentrylist`)
+        axios.get(`http://127.0.0.1:5000/updateentrylist`)
         .then(res => {
             const data = res.data;
             setCompanieslist(res.data.data);
@@ -35,6 +36,7 @@ function Admin(){
     /* New Inputs state */
     const[companyname,setCompanyName] = useState("");
     const[packages,setPackage] = useState("");
+    const[eligibility,setEligibility] = useState("");
     const[dateposted,setDateposted] = useState("");
     const[deadline,setDeadline] = useState("");
     const[logo,setLogo] = useState("");
@@ -53,8 +55,8 @@ function Admin(){
     
 
     function onNewHandler(){
-        axios.post("https://aceplacementsback.onrender.com/newentry",{companyname:companyname,packages:packages,dateposted:dateposted,deadline:deadline,logo:logo,discord:discord,status:status,message:message,link:link}
-        )
+        //axios.post("https://aceplacementsback.onrender.com/newentry",{companyname:companyname,packages:packages,dateposted:dateposted,deadline:deadline,logo:logo,discord:discord,status:status,message:message,link:link,eligibility:eligibility})
+        axios.post("http://127.0.0.1:5000/newentry",{companyname:companyname,packages:packages,dateposted:dateposted,deadline:deadline,logo:logo,discord:discord,status:status,message:message,link:link,eligibility:eligibility})
         .then(res=>{
             const data = res.data
             console.log(res.data)
@@ -64,8 +66,8 @@ function Admin(){
 
     function onUpdateHandler(){
         
-        axios.post("https://aceplacementsback.onrender.com/updateentry",{ucompanyname:ucompanyname,umessage:umessage,ulink:ulink}
-        )
+        //axios.post("https://aceplacementsback.onrender.com/updateentry",{ucompanyname:ucompanyname,umessage:umessage,ulink:ulink})
+        axios.post("http://127.0.0.1:5000/updateentry",{ucompanyname:ucompanyname,umessage:umessage,ulink:ulink})
         .then(res=>{
             
             const data = res.data;
@@ -90,6 +92,8 @@ function Admin(){
                 <Form.Control onChange={(e)=>{setCompanyName(e.target.value)}} placeholder="Company Name" />
                 <Form.Label>Package</Form.Label>
                 <Form.Control onChange={(e)=>{setPackage(e.target.value)}} placeholder="Package" />
+                <Form.Label>Eligibility</Form.Label>
+                <Form.Control onChange={(e)=>{setEligibility(e.target.value)}} placeholder="Eligibility" />
                 <Form.Label>Date Posted</Form.Label>
                 <Form.Control type="datetime-local" onChange={(e)=>{setDateposted(e.target.value)}} placeholder="Date Posted" />
                 <Form.Label>Deadline</Form.Label>

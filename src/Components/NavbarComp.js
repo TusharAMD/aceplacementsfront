@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import List from "./List";
 import Admin from "./Admin";
+import WatchList from "./Watchlist";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -19,7 +20,7 @@ function NavbarComp() {
     });
 
     const { loginWithRedirect, logout, user, isAuthenticated, isLoading  } = useAuth0();
-  
+    console.log(user)
     return (
       <div className="NavbarComp">
           <Navbar className="color-nav" expand="lg" variant="light">
@@ -30,7 +31,7 @@ function NavbarComp() {
                 <Nav className="me-auto">
                   <Nav.Link style={{color:"white"}} href="/">Home</Nav.Link>
                   <Nav.Link style={{color:"white"}} href="/list">List</Nav.Link>
-
+                  <Nav.Link style={{color:"white"}} href="/watchlist">WatchList</Nav.Link>
                   {!isAuthenticated && <Nav.Link onClick={()=>{loginWithRedirect()}} style={{position:"absolute",color:"white",right: "10px"}} href="">Login</Nav.Link>}
                   {isAuthenticated && <Nav.Link  onClick={() => logout({ returnTo: window.location.origin })} style={{position:"absolute",color:"white",right: "10px"}} href="">Logout <img style={{borderRadius:"100%",width:"2em"}} src={user.picture}></img></Nav.Link>}
                 </Nav>
@@ -41,7 +42,9 @@ function NavbarComp() {
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/list" element={<List/>}/>
+            <Route path="/watchlist" element={<WatchList/>}/>
             <Route path="/admin" element={<Admin/>}/>
+            
         </Routes>
         </BrowserRouter>
       </div>

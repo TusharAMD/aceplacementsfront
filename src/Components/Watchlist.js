@@ -8,15 +8,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
  
 
-function List() {
+function WatchList() {
     const [open, setOpen] = useState([])
     const [array,setArray] = useState([])
     const [open1,setOpen1] = useState(false)
     const { loginWithRedirect, logout, user, isAuthenticated, isLoading  } = useAuth0();
     const notify = (msg) => toast(msg);
     useEffect(() => {
-        //axios.get(`https://aceplacementsback.onrender.com/listofcompanies`)
-        axios.get(`http://127.0.0.1:5000/listofcompanies`)
+        //axios.get(`https://aceplacementsback.onrender.com/watchlistcompanies`)
+        axios.post(`http://127.0.0.1:5000/watchlistcompanies`,{user:user})
         .then(res => {
             const data = res.data;
             setArray(data.data);
@@ -26,20 +26,15 @@ function List() {
             //console.log(Array(data.data.length).fill(false))
 
         })
-      }, []);
+      }, [isAuthenticated]);
 
-    function onAddWatchHandler(item){
+    function onRemoveWatchHandler(item){
         console.log(item)
-        if (!isAuthenticated){
-            notify("Please Login First")
-        }
-        else{
-        axios.post(`http://127.0.0.1:5000/watchlistaddremove`,{nameofcompany:item,task:"add",user:user})
+        axios.post(`http://127.0.0.1:5000/watchlistaddremove`,{nameofcompany:item,task:"remove",user:user})
         .then(res => {
             console.log(res.data.data)
             notify(res.data.data)
         })
-        }
     }
     
     return (
@@ -115,7 +110,7 @@ function List() {
                                 <div className='carddiv'>
                                     <div style={{backgroundColor:"white"}}>Status: <span style={{ color: currentStatusIndicator[item["Status"]] }}>{item["Status"]}</span></div>
                                     <div>Join <a href={item["Discord"]}><img style={{ width: "2em" }} src='https://cdn-icons-png.flaticon.com/512/2111/2111370.png'></img></a> Channel</div>
-                                    <div onClick={()=>{onAddWatchHandler(item.Name)}}>Add to WatchList<span class="material-symbols-outlined">add_circle</span></div>
+                                    <div onClick={()=>{onRemoveWatchHandler(item.Name)}}>Remove from WatchList<span  class="material-symbols-outlined">do_not_disturb_on</span></div>
                                 </div>
                                 <br />
                                 
@@ -174,4 +169,4 @@ function List() {
         setOpen(tempopen)
     }
 }
-export default List
+export default WatchList
