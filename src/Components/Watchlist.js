@@ -16,8 +16,8 @@ function WatchList() {
     const { loginWithRedirect, logout, user, isAuthenticated, isLoading  } = useAuth0();
     const notify = (msg) => toast(msg);
     useEffect(() => {
-        //axios.get(`https://aceplacementsback.onrender.com/watchlistcompanies`)
-        axios.post(`http://127.0.0.1:5000/watchlistcompanies`,{user:user})
+        axios.get(`https://aceplacementsback.onrender.com/watchlistcompanies`)
+        //axios.post(`http://127.0.0.1:5000/watchlistcompanies`,{user:user})
         .then(res => {
             const data = res.data;
             setArray(data.data);
@@ -31,7 +31,8 @@ function WatchList() {
 
     function onRemoveWatchHandler(item){
         console.log(item)
-        axios.post(`http://127.0.0.1:5000/watchlistaddremove`,{nameofcompany:item,task:"remove",user:user})
+        //axios.post(`http://127.0.0.1:5000/watchlistaddremove`,{nameofcompany:item,task:"remove",user:user})
+        axios.post(`https://aceplacementsback.onrender.com/watchlistaddremove`,{nameofcompany:item,task:"remove",user:user})
         .then(res => {
             console.log(res.data.data)
             notify(res.data.data)

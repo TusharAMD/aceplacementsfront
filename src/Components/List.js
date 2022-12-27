@@ -16,8 +16,8 @@ function List() {
     const { loginWithRedirect, logout, user, isAuthenticated, isLoading  } = useAuth0();
     const notify = (msg) => toast(msg);
     useEffect(() => {
-        //axios.get(`https://aceplacementsback.onrender.com/listofcompanies`)
-        axios.get(`http://127.0.0.1:5000/listofcompanies`)
+        axios.get(`https://aceplacementsback.onrender.com/listofcompanies`)
+        //axios.get(`http://127.0.0.1:5000/listofcompanies`)
         .then(res => {
             const data = res.data;
             setArray(data.data);
@@ -37,7 +37,8 @@ function List() {
             notify("Please Login First")
         }
         else{
-        axios.post(`http://127.0.0.1:5000/watchlistaddremove`,{nameofcompany:item,task:"add",user:user})
+        //axios.post(`http://127.0.0.1:5000/watchlistaddremove`,{nameofcompany:item,task:"add",user:user})
+        axios.post(`https://aceplacementsback.onrender.com/watchlistaddremove`,{nameofcompany:item,task:"add",user:user})
         .then(res => {
             console.log(res.data.data)
             notify(res.data.data)

@@ -55,8 +55,8 @@ function Admin(){
     
 
     function onNewHandler(){
-        //axios.post("https://aceplacementsback.onrender.com/newentry",{companyname:companyname,packages:packages,dateposted:dateposted,deadline:deadline,logo:logo,discord:discord,status:status,message:message,link:link,eligibility:eligibility})
-        axios.post("http://127.0.0.1:5000/newentry",{companyname:companyname,packages:packages,dateposted:dateposted,deadline:deadline,logo:logo,discord:discord,status:status,message:message,link:link,eligibility:eligibility})
+        axios.post("https://aceplacementsback.onrender.com/newentry",{companyname:companyname,packages:packages,dateposted:dateposted,deadline:deadline,logo:logo,discord:discord,status:status,message:message,link:link,eligibility:eligibility})
+        //axios.post("http://127.0.0.1:5000/newentry",{companyname:companyname,packages:packages,dateposted:dateposted,deadline:deadline,logo:logo,discord:discord,status:status,message:message,link:link,eligibility:eligibility})
         .then(res=>{
             const data = res.data
             console.log(res.data)
@@ -66,8 +66,8 @@ function Admin(){
 
     function onUpdateHandler(){
         
-        //axios.post("https://aceplacementsback.onrender.com/updateentry",{ucompanyname:ucompanyname,umessage:umessage,ulink:ulink})
-        axios.post("http://127.0.0.1:5000/updateentry",{ucompanyname:ucompanyname,umessage:umessage,ulink:ulink})
+        axios.post("https://aceplacementsback.onrender.com/updateentry",{ucompanyname:ucompanyname,umessage:umessage,ulink:ulink})
+        //axios.post("http://127.0.0.1:5000/updateentry",{ucompanyname:ucompanyname,umessage:umessage,ulink:ulink})
         .then(res=>{
             
             const data = res.data;
