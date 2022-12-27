@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { atcb_action } from 'add-to-calendar-button';
+
  
 
 function WatchList() {
@@ -16,12 +18,14 @@ function WatchList() {
     const { loginWithRedirect, logout, user, isAuthenticated, isLoading  } = useAuth0();
     const notify = (msg) => toast(msg);
     useEffect(() => {
-        axios.get(`https://aceplacementsback.onrender.com/watchlistcompanies`)
+        //  axios.get(`https://aceplacementsback.onrender.com/watchlistcompanies`)
+        axios.post(`https://aceplacementsback.onrender.com/watchlistcompanies`,{user:user})
         //axios.post(`http://127.0.0.1:5000/watchlistcompanies`,{user:user})
         .then(res => {
             const data = res.data;
             setArray(data.data);
             setOpen(Array(data.data.length).fill(false))
+            console.log(res.data)
             //console.log(res.data)
             //console.log(data.data.length)
             //console.log(Array(data.data.length).fill(false))
@@ -105,7 +109,25 @@ function WatchList() {
                                 <div className='carddiv'>
 
                                     <div>Date Posted: {item.DatePosted}</div>
-                                    <div>Deadline: {item.Deadline}</div>
+                                    <div
+                                    onClick={e => {
+                                        var temp = item.Deadline.split(" ")
+
+                                        var mymap = {"Jan":"1","Feb":"2","Mar":"3","Apr":"4","May":"5","Jun":"6","Jul":"7","Aug":"8","Sep":"9","Oct":"10","Nov":"11","Dec":"12"}
+                                        var dateString = `${temp[3]}-${mymap[temp[2]]}-${temp[1]}`
+                                        console.log(dateString)
+                                        atcb_action({
+                                          name: `Reminder for ${item.Name}`,
+                                          startDate: `${dateString}`,
+                                          endDate: `${dateString}`,
+                                          startTime:`${temp[4]}`,
+                                          endTime:`${temp[4]}`,
+                                          options: ['Apple', 'Google', 'iCal', 'Microsoft365', 'Outlook.com', 'Yahoo'],
+                                          timeZone: "Asia/Kolkata",
+                                          iCalFileName: "Reminder-Event",
+                                        });
+                                      }}
+                                    >Deadline: {item.Deadline} <span class="material-symbols-outlined"> event </span> </div>
                                     <div>Package: <br/> <span style={{color:"white",border:"2px dotted #012522",backgroundColor:"#016b62",borderRadius:"100%",padding:"2px",margin:"5px"}}>{item.Package} LPA</span></div>
                                 </div>
                                 <br />
