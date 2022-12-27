@@ -4,6 +4,35 @@
 	http://jedwatson.github.io/classnames
 */
 
+/*!
+ *  @preserve
+ *
+ *  ++++++++++++++++++++++
+ *  Add to Calendar Button
+ *  ++++++++++++++++++++++
+ *
+ *  Version: 1.18.8
+ *  Creator: Jens Kuerschner (https://jenskuerschner.de)
+ *  Project: https://github.com/add2cal/add-to-calendar-button
+ *  License: Apache-2.0 with “Commons Clause” License Condition v1.0
+ *  Note:    DO NOT REMOVE THE COPYRIGHT NOTICE ABOVE!
+ *
+ */
+
+/*!
+ *  @preserve
+ *
+ * ++++++++++++++++++++++++++++++++++++++
+ * Add to Calendar TimeZones iCal Library
+ * ++++++++++++++++++++++++++++++++++++++
+ *
+ * Version: 1.5.1
+ * Creator: Jens Kuerschner (https://jenskuerschner.de)
+ * Project: https://github.com/add2cal/timezones-ical-library
+ * License: Apache-2.0
+ *
+ */
+
 /**
  * @license React
  * react-dom.production.min.js
@@ -65,3 +94,5 @@
  *
  * @license MIT
  */
+
+//! moment.js

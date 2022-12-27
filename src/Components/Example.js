@@ -1,35 +1,25 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Collapse from 'react-bootstrap/Collapse';
+import React from 'react';
+import AddToCalendar from 'react-add-to-calendar';
+ 
+import { atcb_action } from 'add-to-calendar-button';
 
-function Example() {
-  const [open, setOpen] = useState(false);
-  let  array = [1,2,3]
+const Example = () => {
+  
+  
   return (
-    <>
-    {array.map(()=>{
-        return(<>
-        <div style={{display:"flex",flexDirection:"column"}}>
-      <Button
-        onClick={() => setOpen(!open)}
-        aria-controls="example-collapse-text"
-        aria-expanded={open}
-      >
-        click
-      </Button>
-      <Collapse in={open}>
-        <div style={{backgroundColor:"white"}} id="example-collapse-text">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-          labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </Collapse>
+    <div style={{backgroundColor:"white"}} onClick={e => {
+      e.preventDefault();
+      atcb_action({
+        name: "My Name",
+        startDate: "2022-10-14",
+        endDate: "2022-10-18",
+        options: ['Apple', 'Google', 'iCal', 'Microsoft365', 'Outlook.com', 'Yahoo'],
+        timeZone: "Europe/Berlin",
+        iCalFileName: "Reminder-Event",
+      });
+    }}>A
     </div>
-            </>)
-    })}
-    </>
   );
 }
-
 
 export default Example

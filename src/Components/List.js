@@ -1,13 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Collapse from 'react-bootstrap/Collapse';
+
 import Accordion from 'react-bootstrap/Accordion';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Modal from 'react-bootstrap/Modal';
+
+import { atcb_action } from 'add-to-calendar-button';
 
 function List() {
     const [open, setOpen] = useState([])
@@ -112,7 +113,25 @@ function List() {
                                 <div className='carddiv'>
 
                                     <div>Date Posted: {item.DatePosted}</div>
-                                    <div>Deadline: {item.Deadline}</div>
+                                    <div
+                                    onClick={e => {
+                                        var temp = item.Deadline.split(" ")
+
+                                        var mymap = {"Jan":"1","Feb":"2","Mar":"3","Apr":"4","May":"5","Jun":"6","Jul":"7","Aug":"8","Sep":"9","Oct":"10","Nov":"11","Dec":"12"}
+                                        var dateString = `${temp[3]}-${mymap[temp[2]]}-${temp[1]}`
+                                        console.log(dateString)
+                                        atcb_action({
+                                          name: `Reminder for ${item.Name}`,
+                                          startDate: `${dateString}`,
+                                          endDate: `${dateString}`,
+                                          startTime:`${temp[4]}`,
+                                          endTime:`${temp[4]}`,
+                                          options: ['Apple', 'Google', 'iCal', 'Microsoft365', 'Outlook.com', 'Yahoo'],
+                                          timeZone: "Asia/Kolkata",
+                                          iCalFileName: "Reminder-Event",
+                                        });
+                                      }}
+                                    >Deadline: {item.Deadline}<span class="material-symbols-outlined"> event </span></div>
                                     <div>Package: <br/> <span style={{color:"white",border:"2px dotted #012522",backgroundColor:"#016b62",borderRadius:"100%",padding:"2px",margin:"5px"}}>{item.Package} LPA</span></div>
                                 </div>
                                 <br />
