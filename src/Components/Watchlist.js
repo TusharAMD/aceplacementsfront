@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Collapse from 'react-bootstrap/Collapse';
+import Accordion from 'react-bootstrap/Accordion';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -116,11 +117,14 @@ function WatchList() {
                                 
                                 <Button  onClick={(e) => {onShowUpdateHandler(e,index); setOpen1(!open1)}} variant="primary">See all Updates</Button>
                                 
-                                <Collapse in={open[index]}>
-                                    <div className='updatenotify'>
-                                        <Updatesnotifier item={item} />
-                                    </div>
-                                </Collapse>
+                                <Accordion>
+                                <Accordion.Item eventKey="0">
+                                    <Accordion.Header >See all Updates</Accordion.Header>
+                                    <Accordion.Body>
+                                    <Updatesnotifier item={item} />
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                                </Accordion>
 
                             </Card.Body>
                         </Card>

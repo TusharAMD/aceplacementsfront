@@ -3,6 +3,7 @@ import Home from "./Home";
 import List from "./List";
 import Admin from "./Admin";
 import WatchList from "./Watchlist";
+import Example from './Example'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -44,6 +45,7 @@ function NavbarComp() {
             <Route path="/list" element={<List/>}/>
             <Route path="/watchlist" element={<WatchList/>}/>
             <Route path="/admin" element={<Admin/>}/>
+            <Route path="/example" element={<Example/>}/>
             
         </Routes>
         </BrowserRouter>

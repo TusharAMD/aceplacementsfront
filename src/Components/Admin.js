@@ -150,9 +150,7 @@ function Admin(){
                 <Button onClick={()=>{onUpdateHandler();console.log({companyname,packages,dateposted,deadline,logo,discord,status,message,link});}} variant="primary" >
                     Update Entry
                 </Button>
-                <Button onClick={()=>createNotification('EntryUpdated')} variant="primary" >
-                    Update Eascasciaj
-                </Button>
+                
                 
             </Form>
         </div>

@@ -1,12 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Collapse from 'react-bootstrap/Collapse';
-import React, { useState, useEffect } from 'react';
+import Accordion from 'react-bootstrap/Accordion';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
- 
+import Modal from 'react-bootstrap/Modal';
 
 function List() {
     const [open, setOpen] = useState([])
@@ -27,6 +28,8 @@ function List() {
 
         })
       }, []);
+
+      
 
     function onAddWatchHandler(item){
         console.log(item)
@@ -119,13 +122,40 @@ function List() {
                                 </div>
                                 <br />
                                 
-                                <Button  onClick={(e) => {onShowUpdateHandler(e,index); setOpen1(!open1)}} variant="primary">See all Updates</Button>
+                                {/*<Button aria-controls="example-collapse-text" aria-expanded={open}  onClick={(e) => {onShowUpdateHandler(e,index); setOpen1(!open1)}} variant="primary">See all Updates</Button>
                                 
+                                <Button  onClick={(e) => {onShowUpdateHandler(e,index);setOpen1(!open1)}}variant="primary">See</Button>
+
                                 <Collapse in={open[index]}>
                                     <div className='updatenotify'>
                                         <Updatesnotifier item={item} />
                                     </div>
                                 </Collapse>
+                                <Button variant="primary" onClick={(e)=>{onShowUpdateHandler(e,index);setOpen1(!open1)}}>
+                                    See all Updates
+                                </Button>
+                                <Modal show={open[index]} onHide={(e)=>{onShowUpdateHandler(e,index);setOpen1(false)}}>
+                                <Modal.Header>
+                                <Modal.Title>{item.Name}</Modal.Title>
+                                </Modal.Header>
+                                    <Modal.Body>
+                                        <div className='updatenotify'>
+                                            <Updatesnotifier item={item} />
+                                        </div>
+                                    </Modal.Body>
+                                </Modal>*/}
+
+                                <Accordion>
+                                <Accordion.Item eventKey="0">
+                                    <Accordion.Header >See all Updates</Accordion.Header>
+                                    <Accordion.Body>
+                                    <Updatesnotifier item={item} />
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                                </Accordion>
+                                
+
+
 
                             </Card.Body>
                         </Card>
@@ -172,6 +202,16 @@ function List() {
         let tempopen = open
         tempopen[index] = !tempopen[index]
         setOpen(tempopen)
+        setOpen1(tempopen)
+        console.log(open)
+
+        //console.log(e.target.getBoundingClientRect())
+        //let clientRect = e.target.getBoundingClientRect()
+        //console.log(clientRect.top + document.body.scrollTop)
+        //let toppos = clientRect.top + document.body.scrollTop
+        //console.log(window.pageYOffset)
+        //window.scrollTo(0,window.pageYOffset)
+        
     }
 }
 export default List
