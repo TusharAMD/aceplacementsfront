@@ -24,8 +24,8 @@ function Admin(){
 
     const [companieslist,setCompanieslist] = useState([])
     useEffect(() => {
-        //axios.get(`https://aceplacementsback.onrender.com/updateentrylist`)
-        axios.get(`http://127.0.0.1:5000/updateentrylist`)
+        axios.get(`https://aceplacementsback.onrender.com/updateentrylist`)
+        //axios.get(`http://127.0.0.1:5000/updateentrylist`)
         .then(res => {
             const data = res.data;
             setCompanieslist(res.data.data);
