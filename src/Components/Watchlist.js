@@ -137,9 +137,7 @@ function WatchList() {
                                     <div onClick={()=>{onRemoveWatchHandler(item.Name)}}>Remove from WatchList<span  class="material-symbols-outlined">do_not_disturb_on</span></div>
                                 </div>
                                 <br />
-                                
-                                <Button  onClick={(e) => {onShowUpdateHandler(e,index); setOpen1(!open1)}} variant="primary">See all Updates</Button>
-                                
+
                                 <Accordion>
                                 <Accordion.Item eventKey="0">
                                     <Accordion.Header >See all Updates</Accordion.Header>
